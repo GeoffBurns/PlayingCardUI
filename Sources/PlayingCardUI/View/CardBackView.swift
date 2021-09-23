@@ -12,7 +12,7 @@ struct CardBackView: View {
     @EnvironmentObject var theme : Theme
     
     public var imageBack: Image {
-        return Image(theme.cardBackName, bundle: Bundle.module)
+        return CardImage.get(name: theme.cardBackName)
             
     }
     var body: some View {

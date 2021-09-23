@@ -13,12 +13,10 @@ public struct CardFrontView: View {
     public var card : PlayingCard
   
     public var imageFront: Image {
-        return Image(card.imageName, bundle: Bundle.module)
-           
+        return CardImage.get(card: card)
     }
     
-    public var body: some View {
-    
+    public var body: some View { 
                 imageFront
                     .resizable()
                     .scaledToFit()
