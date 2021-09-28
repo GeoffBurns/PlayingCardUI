@@ -8,9 +8,26 @@
 import SwiftUI
 import PlayingCard
 
+public enum Validitity
+{
+    case good
+    case bad
+    case unknown
+    
+    public var color : Color? {
+       switch self
+       {
+       case .bad : return .red
+       case .good : return .green
+       default : return nil
+       }
+    }
+}
+
 @available(iOS 13.0, *)
 public struct CardFrontView: View {
     public var card : PlayingCard
+    public var valid : Validitity = .unknown
   
     public var imageFront: Image {
         return CardImage.get(card: card)
@@ -20,6 +37,7 @@ public struct CardFrontView: View {
                 imageFront
                     .resizable()
                     .scaledToFit()
+                    .foregroundColor(valid.color)
     }
 }
 

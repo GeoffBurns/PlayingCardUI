@@ -10,11 +10,12 @@ import PlayingCard
 @available(iOS 13.0, *)
 public struct CardView: View {
     
+    public var valid : Validitity = .unknown
     public var card : PlayingCard?
     @State var flipped = false // state variable used to update the card
  
     public var body: some View {
-        SimpleCardView(card:card, flip:flipped)
+        SimpleCardView(card:card,valid:valid, flip:flipped)
               .padding()
               .rotation3DEffect(self.flipped ? Angle(degrees: 180): Angle(degrees: 0), axis: (x: CGFloat(0), y: CGFloat(10), z: CGFloat(0)))
               .animation(.default) // implicitly applying animation
@@ -29,7 +30,10 @@ public struct CardView: View {
     
     public init(card: PlayingCard?) {
         self.card = card
-    
+    }
+    public init(card: PlayingCard?, valid: Validitity) {
+        self.card = card
+        self.valid = valid
     }
 }
 
@@ -37,6 +41,7 @@ public struct CardView: View {
 public struct SimpleCardView: View {
     
     public var card : PlayingCard?
+    public var valid : Validitity = .unknown
     var flipped : Bool
    
     public var body: some View {
@@ -49,7 +54,7 @@ public struct SimpleCardView: View {
             }
             else
             {
-                CardFrontView(card: card!)
+                CardFrontView(card: card!,valid: valid)
             }
           }
         }
@@ -61,6 +66,11 @@ public struct SimpleCardView: View {
     public init(card: PlayingCard?, flip: Bool) {
         self.card = card
         self.flipped = flip
+    }
+    public init(card: PlayingCard?, valid: Validitity, flip: Bool) {
+        self.card = card
+        self.flipped = flip
+        self.valid = valid
     }
 }
 
