@@ -26,7 +26,8 @@ public enum Validitity
 
 @available(iOS 13.0, *)
 public struct CardFrontView: View {
-    public var card : PlayingCard
+    public var card : PlayingCard 
+    public var color : Color? = nil
     public var valid : Validitity = .unknown
   
     public var imageFront: Image {
@@ -37,7 +38,7 @@ public struct CardFrontView: View {
                 imageFront
                     .resizable()
                     .scaledToFit()
-                    .foregroundColor(valid.color)
+                    .foregroundColor(color ?? valid.color)
     }
 }
 
